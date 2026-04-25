@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        \App\Models\Todo::factory(20)->create();
+
+        \App\Models\ToDo::factory()->create([
+          'description' => 'Collect a leaf from Japan'
+        ]);
     }
 }
