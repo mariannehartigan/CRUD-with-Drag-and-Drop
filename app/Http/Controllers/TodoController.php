@@ -9,7 +9,8 @@ class TodoController extends Controller
 {
     public function store(Request $request)
     {
-        //
+        Todo::create($request->all());
+        return back();
     }
 
     public function update(Request $request, todo $todo)

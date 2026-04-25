@@ -1,7 +1,7 @@
 <template>
   <form @change="update">
     <input v-model="form.description" class="w-[28vw]" />
-    <input v-model="form.completed" class="w-[4vw] text-right" type="checkbox" :true-value="1" :false-value="0" />
+    <input v-model="form.completed" type="checkbox" :true-value="1" :false-value="0" />
   </form>
 </template>
 
