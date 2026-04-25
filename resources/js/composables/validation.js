@@ -1,0 +1,52 @@
+import { reactive, ref } from 'vue'
+
+export function useFormValidation() {
+  const errors = reactive({
+    description: '',
+  })
+
+  const submitted = ref(false)
+
+  const rules = {
+    description: [
+      (v) => (!v?.trim() ? 'Description is required' : ''),
+    ],
+  }
+
+  // Validate a single field
+  const validateField = (field, form) => {
+    errors[field] = ''
+    const value = form[field]
+    for (let rule of rules[field] || []) {
+      const error = rule(value, form)
+      if (error) {
+        errors[field] = error
+        break
+      }
+    }
+    return !errors[field]
+  }
+
+  // Validate entire form and set submitted = true
+  const validateForm = (form, fields = null) => {
+    submitted.value = true
+    let isValid = true
+    const fieldsToValidate = fields || Object.keys(rules)
+    for (let field of fieldsToValidate) {
+      if (!validateField(field, form)) isValid = false
+    }
+    return isValid
+  }
+
+  const clearError = (field) => {
+    errors[field] = ''
+  }
+
+  return {
+    errors,
+    submitted,
+    validateField,
+    validateForm,
+    clearError,
+  }
+}
