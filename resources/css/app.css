@@ -3,6 +3,7 @@
 @import './layout/tablet-layout.css';
 @import './layout/mobile-layout.css';
 @import 'header.css';
+@import 'todos.css';
 
 @tailwind base;
 @tailwind components;

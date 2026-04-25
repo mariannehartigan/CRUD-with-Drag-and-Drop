@@ -1,0 +1,10 @@
+.todos-container {
+  position: fixed;
+  width: 45vw;
+  padding: 2vw 3vw;
+  margin-top: 7vh;
+  left: calc(var(--column1-width) + ((var(--column2-width) - 45vw) / 2)); /* (col2 width - container width)/2, makes it centered */
+  background-color: white;
+  border: 0.1vw solid #c2c2c2;
+  font-size: 0.8vw;
+}
