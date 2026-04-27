@@ -2,11 +2,14 @@
   <form @change="update">
     <input v-model="form.description" class="w-[28vw]" />
     <input v-model="form.completed" type="checkbox" :true-value="1" :false-value="0" />
+    <Link :href="`/todo/${props.todo.id}`" method="DELETE" as="button" class="pl-[1vw]">
+      <img style="width: 0.8vw" src="../../../../public/trashcan.png" />
+    </Link>
   </form>
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3'
+import { Link, useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
   todo: Object

@@ -21,8 +21,9 @@ class TodoController extends Controller
         return back();
     }
 
-    public function destroy(string $id)
+    public function destroy(todo $todo)
     {
-        //
+        $todo->delete();
+        return back();
     }
 }
