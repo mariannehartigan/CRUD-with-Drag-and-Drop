@@ -10,7 +10,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'completed'];
+    protected $fillable = ['description', 'completed', 'category_id'];
 
     public function category(): BelongsTo {
       return $this->belongsTo(\App\Models\Category::class);

@@ -10,7 +10,8 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         Todo::create($request->validate([
-          'description' => 'required|unique:todos'
+          'description' => 'required|unique:todos',
+          'category_id' => 'required'
         ]));
         return back();
     }

@@ -21,13 +21,20 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
 import Draggable from 'vuedraggable'
 import ReadUpdateDelete from './ReadUpdateDelete.vue'
 import Create from './Create.vue'
 
 const categoriesWithTodos = ref(usePage().props.categoriesWithTodos.map(category => ({ ...category, todos: [...category.todos] })) )
+
+watch(
+  () => usePage().props.categoriesWithTodos,
+  (val) => {
+    categoriesWithTodos.value = val.map(c => ({ ...c }))
+  }
+)
 
 function onDragEnd() {
   const newTodoData = []
