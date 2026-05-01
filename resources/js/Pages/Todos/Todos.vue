@@ -1,15 +1,21 @@
 <template>
   <div class="todos-container">
-    <Draggable 
-      v-model="draggableTodos" 
-      item-key="id"
-      animation = "200"
-      @end = "onDragEnd"
-      >
-      <template #item="{ element }">
-        <ReadUpdateDelete :todo="element" />
-      </template>
-    </Draggable>
+    <div v-for="category in categoriesWithTodos">
+      <h3 class="text-purple-800 font-bold pt-[2vh] pb-[0.5vh]">{{ category.day }}</h3>
+      <Draggable 
+        v-model="category.todos" 
+        item-key="id"
+        :group="{ name: 'todos' }"
+        animation = "200"
+        class="pl-[1.5vw]"
+        @end = "onDragEnd"
+        >
+        <template #item="{ element }">
+          <ReadUpdateDelete :todo="element" />
+        </template>
+      </Draggable>
+      <br />
+    </div>
     <Create />
   </div>
 </template>
@@ -21,14 +27,19 @@ import Draggable from 'vuedraggable'
 import ReadUpdateDelete from './ReadUpdateDelete.vue'
 import Create from './Create.vue'
 
-const draggableTodos = ref(
-  [...usePage().props.todos].sort((a, b) => a.position - b.position)
-)
+const categoriesWithTodos = ref(usePage().props.categoriesWithTodos.map(category => ({ ...category, todos: [...category.todos] })) )
 
 function onDragEnd() {
-  const reordered = draggableTodos.value.map((item, index) => ({
-    id: item.id, position: index
-  }))
-  router.put('/reordertodos', { todos: reordered })
+  const newTodoData = []
+  categoriesWithTodos.value.forEach(category => {
+    category.todos.forEach((todo, index) => {
+      newTodoData.push({
+        id: todo.id,
+        position: index,
+        category_id: category.id
+      })
+    })
+  })
+  router.put('/reordertodos', { todos: newTodoData })
 }
 </script>

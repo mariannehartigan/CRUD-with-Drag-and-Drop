@@ -30,7 +30,9 @@ class TodoController extends Controller
     public function reorder(Request $request) {
       foreach ($request->input('todos') as $todoData) {
         Todo::where('id', $todoData['id'])->update([
-          'position' => $todoData['position']]);
+          'position' => $todoData['position'],
+          'category_id' => $todoData['category_id']
+          ]);
       }
       return back();
     }
