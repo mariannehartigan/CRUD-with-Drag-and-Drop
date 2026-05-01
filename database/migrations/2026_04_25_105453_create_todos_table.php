@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('description');
 	          $table->boolean('completed')->nullable();
+            $table->unsignedInteger('position')->default(0);
             $table->timestamps();
         });
     }

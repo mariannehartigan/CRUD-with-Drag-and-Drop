@@ -26,4 +26,12 @@ class TodoController extends Controller
         $todo->delete();
         return back();
     }
+
+    public function reorder(Request $request) {
+      foreach ($request->input('todos') as $todoData) {
+        Todo::where('id', $todoData['id'])->update([
+          'position' => $todoData['position']]);
+      }
+      return back();
+    }
 }

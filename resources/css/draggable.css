@@ -1,9 +1,7 @@
-/* .sortable classes are built into vuedraggable and don't need to be specified */
 .sortable-chosen {
   background-color: #6b3c6b;
   color: white;
 }
-
 
 .sortable-ghost {
   opacity: 0.4;

@@ -5,6 +5,7 @@
 @import 'header.css';
 @import 'todos.css';
 @import 'errors.css';
+@import 'draggable.css';
 
 @tailwind base;
 @tailwind components;
