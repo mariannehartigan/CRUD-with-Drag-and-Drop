@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    public function todo(): HasMany {
+    public function todos(): HasMany {
       return $this->hasMany(\App\Models\Todo::class);
     }
 }
