@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('description');
 	          $table->boolean('completed')->nullable();
             $table->unsignedInteger('position')->default(0);
+            $table->foreignIdFor(\App\Models\Category::class, 'category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

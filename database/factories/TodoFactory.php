@@ -49,6 +49,7 @@ class TodoFactory extends Factory
       return [
         'description' => fake()->unique()->randomElement($todos),
         'completed' => fake()->Boolean(),
+        'category_id' => fake()->numberBetween(1, 3),
       ];
     }
 }

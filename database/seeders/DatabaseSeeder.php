@@ -20,6 +20,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        \App\Models\Category::insert([
+          ['day' => 'Today'],
+          ['day' => 'Tomorrow'],
+          ['day' => 'Next Week'],
+        ]);
+
         \App\Models\Todo::factory(20)->create();
 
         \App\Models\ToDo::factory()->create([
